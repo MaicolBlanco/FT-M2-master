@@ -6,7 +6,12 @@ let toDoItems = []
 // Usando querySelector seleccionar dicho span por su id ('createdBy') y luego usando innerHTML
 // agregar tu nombre al final del texto actual. Ej: 'Aplicación creada por Franco'
 // Tu código acá:
-
+/* Defino una variable con mi nombre */
+const name = ' Martin Esteban'
+/* Obtengo el span */
+let span = document.querySelector('#createdBy')
+/* Agrego mi nombre al innerHTML */
+span.innerHTML = span.innerHTML + name
 
 
 // Crear una clase denominada 'ToDo' cuyo constructor debe recibir un único parámetro del tipo string
@@ -16,9 +21,10 @@ let toDoItems = []
 // 2) 'complete'    : debe setearse en false
 // Ayuda: usar 'this' en el constructor
 
-function ToDo () {
+function ToDo (description) {
   // Tu código acá:
-
+  this.description = description;
+  this.complete = false;
 }
 
 
@@ -27,7 +33,9 @@ function ToDo () {
 // Debe setear el atributo 'complete' del ToDo en true
 
 // Tu código acá:
-
+ToDo.prototype.completeToDo = function(){
+  this.complete = true;
+}
 
 
 // Agregar dos parámetros a la función 'buildToDo':
@@ -48,19 +56,47 @@ function ToDo () {
 //    8) Devolver la variable toDoShell
 
 
-function buildToDo(todo, index) {
-  // Tu código acá:
-
+function buildToDo(elemento, posicion) {
+  /* Paso 1 y 2 */
+  let toDoShell = document.createElement('div');
+  toDoShell.className = 'toDoShell';
+  /* Paso 3 */
+  let toDoText = document.createElement('span');
+  /* Paso 4 */
+  toDoText.innerHTML = elemento.description;
+  /* Paso 5 */
+  toDoText.id = posicion;
+  toDoText.addEventListener('click', completeToDo)
+  /* Paso 6 */
+  if(elemento.complete === true) toDoText.className = 'completeText';
+  else toDoText.className = '';
+  /* Paso 7 */
+  toDoShell.appendChild(toDoText);
+  return toDoShell;
+  /* <div class = ''>
+    <span id = ''>description</span>
+  </div> */
 }
 
 // La función 'buildToDos' debe crear un array de objetos toDo y devolverlo
 // Recibirá como parámetro un array de objetos ToDo
 // Utilizar el método map usando la función previamente creada ('buildToDo')
 // Devolver el nuevo array
-
+/* recibe por parametro => toDos ->[{description,complete},{description,complete},
+  {description,complete}] 
+  <div class = ''>
+    <span id = ''>description</span>
+  </div>
+  Se crea un array y recibe un obejto y retorna un array de elementos html===> [div class = ''>
+    <span id = ''>description</span>
+  </div>,
+div class = ''>
+    <span id = ''>description</span>
+  </div>
+]*/
 function buildToDos(toDos) {
-  // Tu código acá:
-
+  const arrayDeTodos = toDos.map(buildToDo)
+  return arrayDeTodos;
 }
 
 
@@ -74,7 +110,12 @@ function buildToDos(toDos) {
 //  6) Abrir o en el caso de ya tenerlo abierto, recargar, la página
 
 function displayToDos() {
-
+  const toDoContainer = document.querySelector('#toDoContainer');
+  toDoContainer.innerHTML = '';
+  let arrayDeTodos = buildToDos(toDoItems);
+  arrayDeTodos.forEach(function(todoHTML){
+    toDoContainer.appendChild(todoHTML);
+  });
 }
 
 
@@ -88,8 +129,13 @@ function displayToDos() {
 //  4) Llamar a la función displayToDos para que se actualicen los toDos mostrados en pantalla
 
 function addToDo() {
-  // Tu código acá:
-
+  const input = document.querySelector('#toDoInput');
+  if(input.value){
+    let tarea1 = new ToDo(input.value);
+    toDoItems.push(tarea1);
+  }
+  input.value = '';
+  displayToDos()
 }
 
 // Agregar un 'Event Listener' para que cada vez que el botón 'AGREGAR' sea clickeado
@@ -98,6 +144,7 @@ function addToDo() {
 //   2) Agregarle un 'click' event listener, pasándole la función 'addToDo' como callback
 
 // Tu código acá:
+document.querySelector('#addButton').addEventListener('click', addToDo);
 
 
 // La función completeToDo se va a ejecutar cuando queramos completar un todo
@@ -114,9 +161,10 @@ function addToDo() {
 
 function completeToDo(event) {
   // DESCOMENTAR LA SIGUIENTE LINEA
-  // const index = event.target.id;
+  const index = event.target.id;
   // Tu código acá:
-
+  toDoItems[index].completeToDo();
+  displayToDos();
 }
 
 // Una vez que llegaste a este punto verificá que todos los tests pasen

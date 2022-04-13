@@ -11,6 +11,16 @@
     p {
       padding:0 15px;
     }
+    img{
+      .imgHeader(100%, 10px, 20px);
+    }
+    @media @phone {
+      img{
+        .imgHeader(98%, 10px, 20px);
+        position: relative;
+        left: 5px;
+      }
+    }
 
   }
 
@@ -24,6 +34,14 @@
       margin: 20px 2.5%;
       border-radius: 20px;
       height: 100%;
+    }
+    @media @phone {
+      .ondas, .tecnologia{
+        display: none;
+      }
+      .auricular{
+        width: 100%;
+      }
     }
   }
 
@@ -58,6 +76,15 @@
       }
 
       .btn {
+        .boton(white, @btn-bg-color, 10px);
+        @media @phone {
+          width: 100%;
+          text-align: center;
+          padding: 20px;
+        }
+      }
+      @media @phone {
+        width: 100%;
       }
     }
 
@@ -70,6 +97,15 @@
         height: auto;
         border-radius: 10px;
       }
+      @media @phone {
+        width: 100%;
+      }
+    }
+
+    @media @phone {
+      padding: 10px;
+      display: flex;
+      flex-direction: column-reverse;
     }
   }
 }

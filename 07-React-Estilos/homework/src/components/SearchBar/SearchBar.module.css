@@ -1,0 +1,16 @@
+.contenedor{
+    background-color: grey;
+    width: 30%;
+    padding: 5px;
+}
+
+.input{
+    border-radius: 2px;
+    margin-right: 5px;
+}
+
+.button{
+    color: darkgreen;
+    background-color: beige;
+    border: 2px solid green;
+}

@@ -1,0 +1,25 @@
+.card {
+    text-align: center;
+    width: 35%;
+    border-radius: 5px;
+    color: olive;
+    border: 1px solid gray;
+}
+
+.closeButton {
+    position: relative;
+    margin-left: 270px;
+    top: 5px;
+    background-color: brown;
+    color: wheat;
+    font-size: 13px;
+    border-radius: 5px;
+    border: 0px;
+    padding: 4px 6px 4px 6px;
+}
+
+.icon {
+    position: relative;
+    right: 20px;
+    bottom: 20px;
+}

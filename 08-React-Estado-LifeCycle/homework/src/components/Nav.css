@@ -1,3 +1,30 @@
 #logoHenry {
   margin-right: 20px;
 }
+
+.barrasearch{
+  position: relative; left: 1040px; top:5px;
+}
+
+.colorspan{
+  position: relative; left: 40px; top: 5px;
+  color: white;
+  font-size: 20px;
+  font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+  left: -18%;
+}
+
+.menubar{
+  width: 100%;
+  background-color: grey;
+  border: solid 2px red;
+}
+
+.flex{
+  display: flex;
+  justify-content: space-between;
+}
+
+.tamano{
+  width: 20px;
+}
